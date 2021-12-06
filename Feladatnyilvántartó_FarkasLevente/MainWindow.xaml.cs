@@ -20,7 +20,8 @@ namespace Feladatnyilvántartó_FarkasLevente
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<CheckBox> feladatLista = new List<CheckBox>();
+        private List<CheckBox> hozzáAdottElemek = new List<CheckBox>();
+        private List<CheckBox> töröltElemek = new List<CheckBox>();
         public MainWindow()
         {
             InitializeComponent();
@@ -35,13 +36,12 @@ namespace Feladatnyilvántartó_FarkasLevente
                 CheckBox hozzáAdandó = new CheckBox();
                 hozzáAdandó.IsChecked = false;
                 hozzáAdandó.Content = FeladatSzöveg.Text;
-                feladatLista.Add(hozzáAdandó);
+                hozzáAdottElemek.Add(hozzáAdandó);
                 hozzáAdandó.Checked += new RoutedEventHandler(Vizsgál);
                 hozzáAdandó.Unchecked += new RoutedEventHandler(Vizsgál);
             }
-            FeladatLista.ItemsSource = feladatLista; 
-            FeladatLista.Items.Refresh();
-            
+            RefreshListBox(FeladatLista, hozzáAdottElemek);
+
         }
 
 
@@ -60,6 +60,26 @@ namespace Feladatnyilvántartó_FarkasLevente
             }
            
         }
-       
+
+        private void FeladatTörlésGomb_Click(object sender, RoutedEventArgs e)
+        {
+            if (FeladatLista.SelectedItem == null) return;
+
+
+            CheckBox törlendő = (CheckBox)FeladatLista.SelectedItem;
+            töröltElemek.Add(törlendő);
+            hozzáAdottElemek.Remove(törlendő);
+            
+            
+
+            RefreshListBox(FeladatLista, hozzáAdottElemek);
+            RefreshListBox(TöröltElemLista, töröltElemek);
+        }
+
+        private void RefreshListBox(ListBox listBox, List<CheckBox> elemek)
+        {
+            listBox.ItemsSource = elemek;
+            listBox.Items.Refresh();
+        }
     }
 }

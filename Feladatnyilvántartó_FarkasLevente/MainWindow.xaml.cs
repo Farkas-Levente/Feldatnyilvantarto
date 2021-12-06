@@ -20,9 +20,25 @@ namespace Feladatnyilvántartó_FarkasLevente
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<CheckBox> feladatLista = new List<CheckBox>();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        
+
+        private void Hozzáadás(object sender, RoutedEventArgs e)
+        {
+            if(FeladatSzöveg != null)
+            {
+                CheckBox hozzáAdandó = new CheckBox();
+                hozzáAdandó.IsChecked = false;
+                hozzáAdandó.Content = FeladatSzöveg.Text;
+                feladatLista.Add(hozzáAdandó);
+            }
+            FeladatLista.ItemsSource = feladatLista; 
+            FeladatLista.Items.Refresh();
         }
     }
 }

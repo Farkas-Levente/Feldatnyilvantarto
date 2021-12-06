@@ -118,7 +118,9 @@ namespace Feladatnyilvántartó_FarkasLevente
 
         private void FeladatLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             CheckBox selectedItem = (CheckBox)FeladatLista.SelectedItem;
+            if (selectedItem == null) return;
             lastItem = selectedItem;
             FeladatSzöveg.Text = selectedItem.Content.ToString();
             
@@ -147,10 +149,21 @@ namespace Feladatnyilvántartó_FarkasLevente
             }
 
             File.WriteAllLines(@".\feladatok.txt", feladatok);
+
+
+            for (int i = 0; i < toroltFeladatok.Length; i++)
+            {
+                CheckBox box = (CheckBox)TöröltElemLista.Items[i];
+
+                toroltFeladatok[i] = box.Content.ToString() + ";" + box.IsChecked ;
+            }
+
+            File.WriteAllLines(@".\toroltFeladatok.txt", toroltFeladatok);
         }
 
         private void Betoltes()
         {
+            if (!File.Exists("feladatok.txt")) return;
             string[] feladatok = File.ReadAllLines("feladatok.txt");
             List<CheckBox> checkBoxes = new List<CheckBox>();
             
@@ -164,8 +177,32 @@ namespace Feladatnyilvántartó_FarkasLevente
                     boxToAdd.IsChecked = true;
                 }
                 checkBoxes.Add(boxToAdd);
+                hozzáAdottElemek.Add(boxToAdd);
             }
             FeladatLista.ItemsSource = checkBoxes;
+
+
+            if (!File.Exists("toroltFeladatok.txt")) return;
+            string[]    torolFeladatok = File.ReadAllLines("toroltFeladatok.txt");
+            List<CheckBox> toroltCheckBoxes = new List<CheckBox>();
+
+            for (int i = 0; i < torolFeladatok.Length; i++)
+            {
+                string[] sor = torolFeladatok[i].Split(';');
+                CheckBox boxToAdd = new CheckBox();
+                boxToAdd.Content = sor[0];
+                if (sor[1] == "True")
+                {
+                    boxToAdd.IsChecked = true;
+                }
+                boxToAdd.Checked += new RoutedEventHandler(Vizsgál);
+                boxToAdd.Unchecked += new RoutedEventHandler(Vizsgál);
+                toroltCheckBoxes.Add(boxToAdd);
+                töröltElemek.Add(boxToAdd);
+               
+            }
+            TöröltElemLista.ItemsSource = toroltCheckBoxes;
+
         }
 
        

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,12 +26,15 @@ namespace Feladatnyilvántartó_FarkasLevente
         public MainWindow()
         {
             InitializeComponent();
+            Application.Current.Exit += new ExitEventHandler(Bezaras);
+            Betoltes();
         }
 
         CheckBox lastItem = null;
 
         private void Hozzáadás(object sender, RoutedEventArgs e)
         {
+            
             if(FeladatSzöveg != null)
             {
                 CheckBox hozzáAdandó = new CheckBox();
@@ -75,6 +79,7 @@ namespace Feladatnyilvántartó_FarkasLevente
             RefreshListBox(FeladatLista, hozzáAdottElemek);
             RefreshListBox(TöröltElemLista, töröltElemek);
         }
+        
 
         private void RefreshListBox(ListBox listBox, List<CheckBox> elemek)
         {
@@ -126,7 +131,43 @@ namespace Feladatnyilvántartó_FarkasLevente
             
            
             lastItem.Content = FeladatSzöveg.Text;
-
+           
         }
+
+        private void Bezaras(object sender, ExitEventArgs e)
+        {
+            string[] feladatok = new string[FeladatLista.Items.Count];
+            string[] toroltFeladatok = new string[TöröltElemLista.Items.Count];
+
+            for (int i = 0; i < feladatok.Length; i++)
+            {
+                CheckBox box = (CheckBox)FeladatLista.Items[i];
+
+                feladatok[i] = box.Content.ToString() + ";" + box.IsChecked ;
+            }
+
+            File.WriteAllLines(@".\feladatok.txt", feladatok);
+        }
+
+        private void Betoltes()
+        {
+            string[] feladatok = File.ReadAllLines("feladatok.txt");
+            List<CheckBox> checkBoxes = new List<CheckBox>();
+            
+            for (int i = 0; i < feladatok.Length; i++)
+            {
+                string[] sor = feladatok[i].Split(';');
+                CheckBox boxToAdd = new CheckBox();
+                boxToAdd.Content = sor[0];
+                if(sor[1] == "True")
+                {
+                    boxToAdd.IsChecked = true;
+                }
+                checkBoxes.Add(boxToAdd);
+            }
+            FeladatLista.ItemsSource = checkBoxes;
+        }
+
+       
     }
 }

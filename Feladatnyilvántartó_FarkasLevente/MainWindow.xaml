@@ -17,7 +17,8 @@
         <Button Name="MódosítGomb" Content="Kijelölt feladat módosítása" HorizontalAlignment="Left" Margin="401,136,0,0" VerticalAlignment="Top" Width="217"/>
         <Button Name="FeladatTörlésGomb" Content="Kijelölt feladat törlése" HorizontalAlignment="Left" Margin="401,160,0,0" VerticalAlignment="Top" Width="217" Click="FeladatTörlésGomb_Click"/>
         <Button Name="FeladatVisszaállítGomb" Content="Kijelölt feladat visszaállít" HorizontalAlignment="Left" Margin="401,268,0,0" VerticalAlignment="Top" Width="217" Click="VisszaÁllít"/>
-        <Button Name="VéglegesTörlésGomb" Content="Kijelölt feladat végleg törlése" HorizontalAlignment="Left" Margin="401,292,0,0" VerticalAlignment="Top" Width="217"/>
+        <Button Name="VéglegesTörlésGomb" Content="Kijelölt feladat végleg törlése" HorizontalAlignment="Left" Margin="401,292,0,0" VerticalAlignment="Top" Width="217" Click="VeglegesTorles"/>
+        <Label Content="Farkas Levente" HorizontalAlignment="Left" Margin="693,384,-0.4,0" VerticalAlignment="Top" Width="101"/>
 
     </Grid>
 </Window>

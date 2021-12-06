@@ -97,5 +97,18 @@ namespace Feladatnyilvántartó_FarkasLevente
             RefreshListBox(FeladatLista, hozzáAdottElemek);
             RefreshListBox(TöröltElemLista, töröltElemek);
         }
+
+        private void VeglegesTorles(object sender, RoutedEventArgs e)
+        {
+            if (TöröltElemLista.SelectedItem == null) return;
+
+
+            CheckBox törlendő = (CheckBox)TöröltElemLista.SelectedItem;
+            töröltElemek.Remove(törlendő);
+
+            RefreshListBox(FeladatLista, hozzáAdottElemek);
+            RefreshListBox(TöröltElemLista, töröltElemek);
+
+        }
     }
 }

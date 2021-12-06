@@ -81,5 +81,21 @@ namespace Feladatnyilvántartó_FarkasLevente
             listBox.ItemsSource = elemek;
             listBox.Items.Refresh();
         }
+
+        private void VisszaÁllít(object sender, RoutedEventArgs e)
+        {
+            if (TöröltElemLista.SelectedItem == null) return;
+
+
+            CheckBox visszaállítandó = (CheckBox)TöröltElemLista.SelectedItem;
+            hozzáAdottElemek.Add(visszaállítandó);
+            töröltElemek.Remove(visszaállítandó);
+            
+
+
+
+            RefreshListBox(FeladatLista, hozzáAdottElemek);
+            RefreshListBox(TöröltElemLista, töröltElemek);
+        }
     }
 }

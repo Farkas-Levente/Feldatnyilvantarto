@@ -176,6 +176,18 @@ namespace Feladatnyilvántartó_FarkasLevente
                 {
                     boxToAdd.IsChecked = true;
                 }
+                boxToAdd.Checked += new RoutedEventHandler(Vizsgál);
+                boxToAdd.Unchecked += new RoutedEventHandler(Vizsgál);
+                if (boxToAdd.IsChecked == true)
+                {
+                    boxToAdd.FontStyle = FontStyles.Italic;
+                    boxToAdd.Foreground = Brushes.Gray;
+                }
+                else
+                {
+                    boxToAdd.FontStyle = FontStyles.Normal;
+                    boxToAdd.Foreground = Brushes.Black;
+                }
                 checkBoxes.Add(boxToAdd);
                 hozzáAdottElemek.Add(boxToAdd);
             }
@@ -197,6 +209,17 @@ namespace Feladatnyilvántartó_FarkasLevente
                 }
                 boxToAdd.Checked += new RoutedEventHandler(Vizsgál);
                 boxToAdd.Unchecked += new RoutedEventHandler(Vizsgál);
+                if (boxToAdd.IsChecked == true)
+                {
+                    boxToAdd.FontStyle = FontStyles.Italic;
+                    boxToAdd.Foreground = Brushes.Gray;
+                }
+                else
+                {
+                    boxToAdd.FontStyle = FontStyles.Normal;
+                    boxToAdd.Foreground = Brushes.Black;
+                }
+
                 toroltCheckBoxes.Add(boxToAdd);
                 töröltElemek.Add(boxToAdd);
                

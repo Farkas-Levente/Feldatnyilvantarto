@@ -27,7 +27,7 @@ namespace Feladatnyilvántartó_FarkasLevente
             InitializeComponent();
         }
 
-        
+        CheckBox lastItem = null;
 
         private void Hozzáadás(object sender, RoutedEventArgs e)
         {
@@ -108,6 +108,24 @@ namespace Feladatnyilvántartó_FarkasLevente
 
             RefreshListBox(FeladatLista, hozzáAdottElemek);
             RefreshListBox(TöröltElemLista, töröltElemek);
+
+        }
+
+        private void FeladatLista_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CheckBox selectedItem = (CheckBox)FeladatLista.SelectedItem;
+            lastItem = selectedItem;
+            FeladatSzöveg.Text = selectedItem.Content.ToString();
+            
+        }
+
+        private void Módosít(object sender, RoutedEventArgs e)
+        {
+           
+            if (FeladatLista.SelectedItem == null) return;
+            
+           
+            lastItem.Content = FeladatSzöveg.Text;
 
         }
     }

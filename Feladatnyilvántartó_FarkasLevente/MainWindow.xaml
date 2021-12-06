@@ -8,16 +8,16 @@
         Name="ablak" Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="Feladatok Listája" HorizontalAlignment="Left" Margin="82,53,0,0" VerticalAlignment="Top" Width="158"/>
-        <Label Content="Feladat szövege:" HorizontalAlignment="Left" Margin="399,53,0,0" VerticalAlignment="Top" Width="172"/>
+        <Label  Content="Feladat szövege:" HorizontalAlignment="Left" Margin="399,53,0,0" VerticalAlignment="Top" Width="172"/>
         <Label Content="Törölt elemek" HorizontalAlignment="Left" Margin="82,242,0,0" VerticalAlignment="Top" Width="158"/>
-        <ListBox HorizontalAlignment="Left" Height="153" Margin="82,84,0,0" VerticalAlignment="Top" Width="313"/>
-        <ListBox HorizontalAlignment="Left" Height="117" Margin="82,268,0,0" VerticalAlignment="Top" Width="313"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="399,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="219"/>
-        <Button Content="Új hozzáadása" HorizontalAlignment="Left" Margin="401,112,0,0" VerticalAlignment="Top" Width="217"/>
-        <Button Content="Kijelölt feladat módosítása" HorizontalAlignment="Left" Margin="401,136,0,0" VerticalAlignment="Top" Width="217"/>
-        <Button Content="Kijelölt feladat törlése" HorizontalAlignment="Left" Margin="401,160,0,0" VerticalAlignment="Top" Width="217"/>
-        <Button Content="Kijelölt feladat visszaállít" HorizontalAlignment="Left" Margin="401,268,0,0" VerticalAlignment="Top" Width="217"/>
-        <Button Content="Kijelölt feladat végleg törlése" HorizontalAlignment="Left" Margin="401,292,0,0" VerticalAlignment="Top" Width="217"/>
+        <ListBox Name="FeladatLista" HorizontalAlignment="Left" Height="153" Margin="82,84,0,0" VerticalAlignment="Top" Width="313"/>
+        <ListBox Name="TöröltElemLista" HorizontalAlignment="Left" Height="117" Margin="82,268,0,0" VerticalAlignment="Top" Width="313"/>
+        <TextBox Name="FeladatSzöveg" HorizontalAlignment="Left" Height="23" Margin="399,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="219"/>
+        <Button Name="ÚjGomb" Content="Új hozzáadása" HorizontalAlignment="Left" Margin="401,112,0,0" VerticalAlignment="Top" Width="217"/>
+        <Button Name="MódosítGomb" Content="Kijelölt feladat módosítása" HorizontalAlignment="Left" Margin="401,136,0,0" VerticalAlignment="Top" Width="217"/>
+        <Button Name="FeladatTörlésGomb" Content="Kijelölt feladat törlése" HorizontalAlignment="Left" Margin="401,160,0,0" VerticalAlignment="Top" Width="217"/>
+        <Button Name="FeladatVisszaállítGomb" Content="Kijelölt feladat visszaállít" HorizontalAlignment="Left" Margin="401,268,0,0" VerticalAlignment="Top" Width="217"/>
+        <Button Name="VéglegesTörlésGomb" Content="Kijelölt feladat végleg törlése" HorizontalAlignment="Left" Margin="401,292,0,0" VerticalAlignment="Top" Width="217"/>
 
     </Grid>
 </Window>

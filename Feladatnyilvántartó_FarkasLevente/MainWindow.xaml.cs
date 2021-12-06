@@ -36,9 +36,30 @@ namespace Feladatnyilvántartó_FarkasLevente
                 hozzáAdandó.IsChecked = false;
                 hozzáAdandó.Content = FeladatSzöveg.Text;
                 feladatLista.Add(hozzáAdandó);
+                hozzáAdandó.Checked += new RoutedEventHandler(Vizsgál);
+                hozzáAdandó.Unchecked += new RoutedEventHandler(Vizsgál);
             }
             FeladatLista.ItemsSource = feladatLista; 
             FeladatLista.Items.Refresh();
+            
         }
+
+
+        public void Vizsgál(object sender, RoutedEventArgs e)
+        {
+            CheckBox box = (CheckBox)sender;
+            if (box.IsChecked == true)
+            {
+                box.FontStyle = FontStyles.Italic;
+                box.Foreground = Brushes.Gray;
+            }
+            else
+            {
+                box.FontStyle = FontStyles.Normal;
+                box.Foreground = Brushes.Black;
+            }
+           
+        }
+       
     }
 }
